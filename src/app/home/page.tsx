@@ -152,7 +152,6 @@ export default function Home() {
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          {taskDescription}
           <CreatableSelect
             options={descriptions}
             onChange={(selectedDescription) =>
