@@ -3,9 +3,9 @@ import { StatusCodes } from "http-status-codes";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const token = await getToken({ req });
-  const { id } = params
+  const { id } = await params
   const task = await prisma.task.findFirst({
     where: {
       id,
