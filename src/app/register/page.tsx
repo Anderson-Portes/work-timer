@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import IRegisterRequest from "@/types/requests/IRegisterRequest";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -29,8 +29,9 @@ export default function RegisterPage() {
     try {
       await axios.post("/api/auth/register", formData);
       router.push("/");
-    } catch (err: any) {
-      toast.error(err.response.data.message)
+    } catch (err) {
+      const message = (err as AxiosError<{ message: string }>).response?.data?.message
+      toast.error(message)
     }
   };
 
