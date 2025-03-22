@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogOut, Play, Square, Trash } from "lucide-react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "sonner";
 import { signOut } from "next-auth/react";
 
@@ -78,7 +78,7 @@ export default function Home() {
         description: taskDescription
       })
       setTasks((prevTasks) => [newTask, ...prevTasks]);
-    } catch (err: AxiosError | any) {
+    } catch (err: any) {
       toast.error(err.response.data.message)
     }
   }
