@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Trash } from "lucide-react";
-import { secondsToTime } from "@/utils/time";
+import { getBrazilianDate, secondsToTime } from "@/utils/time";
 import axios from "axios";
 
 interface TaskGroup {
@@ -33,7 +33,7 @@ export default function TasksList({
       const start = new Date(currentTask.startTime).getTime();
       const end = currentTask.endTime
         ? new Date(currentTask.endTime).getTime()
-        : Date.now();
+        : getBrazilianDate().getTime();
       const duration = Math.floor((end - start) / 1000);
       const currentTaskIndex = group.findIndex(
         (t) => t.description === currentTask.description

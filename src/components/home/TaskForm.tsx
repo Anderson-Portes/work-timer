@@ -7,7 +7,7 @@ import CreatableSelect from "react-select/creatable";
 import axios from "axios";
 import { toast } from "sonner";
 import ITask from "@/types/entities/ITask";
-import { secondsToTime } from "@/utils/time";
+import { getBrazilianDate, secondsToTime } from "@/utils/time";
 
 export default function TaskForm({
   tasks,
@@ -46,7 +46,7 @@ export default function TaskForm({
       const startTime = new Date(task.startTime).getTime();
       const endTime = task.endTime
         ? new Date(task.endTime).getTime()
-        : Date.now();
+        : getBrazilianDate().getTime();
       const taskDuration = (endTime - startTime) / 1000;
       return duration + taskDuration;
     }, 0);

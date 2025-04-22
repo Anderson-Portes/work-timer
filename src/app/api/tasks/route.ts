@@ -6,7 +6,7 @@ import { getBrazilianDate } from "@/utils/time";
 
 export async function GET(req: NextRequest) {
   const token = await getToken({ req })
-  const today = new Date();
+  const today = getBrazilianDate();
   today.setHours(0, 0, 0, 0);
   const tasks = await prisma.task.findMany({
     where: {
