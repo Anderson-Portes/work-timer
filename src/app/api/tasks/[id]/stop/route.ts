@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { getBrazilianDate } from "@/utils/time";
 import { StatusCodes } from "http-status-codes";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
@@ -18,7 +19,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   const updatedTask = await prisma.task.update({
     where: { id },
     data: {
-      endTime: new Date()
+      endTime: getBrazilianDate()
     }
   })
   return NextResponse.json(updatedTask, { status: StatusCodes.OK })

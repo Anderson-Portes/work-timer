@@ -6,3 +6,9 @@ export const secondsToTime = (seconds: number): string => {
     .toString()
     .padStart(2, "0")}:${secondsToMinutes.toString().padStart(2, "0")}`;
 };
+
+export const getBrazilianDate = (): Date => {
+  const date = new Date();
+  date.setHours(date.getHours() - 3);
+  return date;
+}

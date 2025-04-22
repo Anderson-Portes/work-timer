@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { getToken } from "next-auth/jwt";
 import { StatusCodes } from "http-status-codes";
+import { getBrazilianDate } from "@/utils/time";
 
 export async function GET(req: NextRequest) {
   const token = await getToken({ req })
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
   const task = await prisma.task.create({
     data: {
       description,
-      startTime: new Date(),
+      startTime: getBrazilianDate(),
       userId: token?.sub as string
     }
   })
